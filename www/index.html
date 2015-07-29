@@ -38,12 +38,13 @@
               <div class="col-sm-offset-3 col-sm-9">
                 <button type="button" class="btn btn-danger" id="run">Start</button>
                 <button type="button" class="btn btn-success" id="stop">Stop</button>
+		<div id="messages" class="pull-right"></div>
               </div>
             </div>
           </form>
           <h3>Status</h3>
           <div id="status"></div>
-          <div id="messages"></div>
+          <div id="zmessages"></div>
         </div>
       </div>
     </div>
@@ -51,40 +52,37 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script>
     $('#run').click(function(){
-        console.log("Run");
         $.ajax({
             url: "/run",
             type: 'post',
             data: {
-              'url': $('#url').val(),
-              'req': $('#req').val(),
-              'len': $('#len').val()
-              }
-            }, function(data){
-              $('#messages').html('<b>'+data.message+'</b>');
-          });
+                'url': $('#url').val(),
+                'req': $('#req').val(),
+                'len': $('#len').val()
+                }
+            }).done(function(data){
+                $('#messages').html('<b>'+data.message+'</b>');
+         });
     });
     $('#stop').click(function(){
-        console.log("stop");
         $.get("/stop",function(data){
-          $('#messages').html('<b>'+data.message+'</b>');
+            $('#messages').html('<b>'+data.message+'</b>');
         });
     });
 
     function getStats(){
         $.get("/stats",
-          function(data){
-            $('#status').html('<b>Active Nodes:</b> '+data.activeNodes+'<br/>');
-            
+            function(data){
+                $('#status').html('<b>Active Nodes:</b> '+data.activeNodes+'<br/>');
         }).always(function(data,status) {
-          if(status == 'success'){
-            setTimeout(getStats,1000);
-          }else{
-            $('#status').html('<font color="red">Status unvaliable</font>');
-            console.log("Error getting stats. Delaying stats pooling");
-            setTimeout(getStats,5000);
-          }
-        });
+            if(status == 'success'){
+                setTimeout(getStats,1000);
+            }else{
+                $('#status').html('<font color="red">Status unvaliable</font>');
+                console.log("Error getting stats. Delaying stats pooling");
+                setTimeout(getStats,5000);
+           }
+       });
     }
     setTimeout(getStats,1000);
     </script>
