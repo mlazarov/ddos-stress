@@ -8,7 +8,12 @@
 
 var config = {};
 
+// Master server host and port
 config.server = 'localhost';
 config.port = 5004;
 
+
+/**
+ * Expose `config`
+*/
 module.exports = config;

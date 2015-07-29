@@ -68,7 +68,7 @@ app.use('/run', function (req, res, next) {
     console.log(req.body);
 
     activeNodes.forEach(function(node){
-	    node.run(req.body.url,req.body.req,req.body.len);
+	    node.run(req.body.url,req.body.req);
 	});
 
 	res.setHeader('Content-Type', 'application/json');
