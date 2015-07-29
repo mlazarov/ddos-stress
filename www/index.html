@@ -43,6 +43,7 @@
           </form>
           <h3>Status</h3>
           <div id="status"></div>
+          <div id="messages"></div>
         </div>
       </div>
     </div>
@@ -60,12 +61,14 @@
               'len': $('#len').val()
               }
             }, function(data){
-              $('#status').html('<b>'+data.data.toString()+'</b>');
+              $('#messages').html('<b>'+data.message+'</b>');
           });
     });
     $('#stop').click(function(){
         console.log("stop");
-        $.get("/stop");
+        $.get("/stop",function(data){
+          $('#messages').html('<b>'+data.message+'</b>');
+        });
     });
 
     function getStats(){
