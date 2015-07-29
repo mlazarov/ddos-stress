@@ -1,0 +1,60 @@
+{
+  "name": "ddos-stress",
+  "description": "DDoS stress tool",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mlazarov/ddos-stress",
+  "author": {
+    "name": "Martin Lazarov",
+    "email": "martin@lazarov.bg"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mlazarov/ddos-stress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mlazarov/ddos-stress/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/mlazarvo/ddos-stress/blob/master/LICENSE"
+    }
+  ],
+  "main": "lib/ddos-stress",
+  "bin": {
+    "ddos-stress": "app.js"
+  },
+  "engines": {
+    "node": ">= 0.10.26"
+  },
+  "dependencies": {
+    "dnode": "~1.2.1",
+    "superagent": "~0.16.0",
+    "colors": "~0.6.2",
+    "connect": "~3.4.0",
+    "serve-static": "~1.10.0",
+    "body-parser": "~1.13.2"
+  },
+  "devDependencies": {
+  },
+  "keywords": [
+    "stress",
+    "tool",
+    "ddos",
+    "attack"
+  ],
+  "_id": "ddos-stress@0.1.0",
+  "_from": "ddos-stress@*",
+  "_npmVersion": "1.4.3",
+  "_npmUser": {
+    "name": "mlazarov",
+    "email": "martin@lazarov.bg"
+  },
+  "maintainers": [
+    {
+      "name": "Martin Lazarov",
+      "email": "martin@lazarov.bg"
+    }
+  ],
+  "directories": {}
+}
