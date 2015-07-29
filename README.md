@@ -47,7 +47,7 @@ Open your browser and point it to the server (where server.js is started) IP and
 http://localhost:3000/
 
 
-Whatch the video to see the DDoS Stress module in action:
+Watch the video to see the DDoS Stress App in action:
 
 [![DDoS Stress Video Preview](http://img.youtube.com/vi/zlfNmzn3yIk/0.jpg)](http://www.youtube.com/watch?v=zlfNmzn3yIk)
 
