@@ -18,7 +18,7 @@ var Stress = require('ddos-stress');
 var stress = new Stress();
 
 // Run stress on server
-Stress.run('http://192.168.3.44/',10);
+stress.run('http://192.168.3.44/',10);
 ```
 
 ### Distributed DOS (DDoS) Example:
